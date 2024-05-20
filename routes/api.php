@@ -8,5 +8,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/ping', function (Request $request) {
-    return "pong";
+    return 'pong!';
 });
