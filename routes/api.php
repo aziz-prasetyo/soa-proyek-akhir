@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AuthApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/me', [AuthApiController::class, 'me']);
+    Route::post('/logout', [AuthApiController::class, 'logout']);
 
-Route::get('/ping', function (Request $request) {
-    return 'pong!';
 });
+
