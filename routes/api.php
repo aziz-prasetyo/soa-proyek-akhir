@@ -10,3 +10,6 @@ Route::get('/user', function (Request $request) {
 Route::get('/ping', function (Request $request) {
     return 'pong!';
 });
+
+Route::post('/register', [AuthController::class, 'register']);
+
