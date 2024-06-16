@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\V1\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::middleware('auth:api')->group(function () {
 
-Route::get('/ping', function (Request $request) {
-    return 'pong!';
+    // Admin Routes
+    Route::middleware('is_admin')->group(function () {
+        Route::get('/users', [UserApiController::class, 'index']);
+    });
 });
